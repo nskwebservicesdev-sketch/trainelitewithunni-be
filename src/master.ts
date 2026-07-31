@@ -16,7 +16,8 @@ import { initLoggerExceptionTable } from "./model/logger.model";
 import { initContactRequestTable } from "./model/contact_request.model";
 
 const app: Application = express();
-const MASTER_PORT = process.env.MASTER_PORT || 6101;
+// const MASTER_PORT = process.env.MASTER_PORT || 6101;
+const MASTER_PORT = process.env.PORT || 3000;
 
 function initServer() {
   try {
