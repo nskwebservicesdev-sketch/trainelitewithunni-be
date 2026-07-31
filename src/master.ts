@@ -100,6 +100,18 @@ app.use((err: any, req: any, res: any, next: any) => {
   });
 });
 
+app.on("error", (err) => {
+  console.error("Express app error:", err);
+});
+
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
+});
+
+process.on("unhandledRejection", (reason) => {
+  console.error("Unhandled Rejection:", reason);
+});
+
 app.use('/api', routes);
 
 app.all(/.*/, (req: Request, res: Response) => {
