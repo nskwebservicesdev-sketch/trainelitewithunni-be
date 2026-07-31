@@ -38,8 +38,12 @@ function initServer() {
       wLogger.error("[Master]: Database connection failed: " + err.message);
     });
 
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       wLogger.info(`Master started on port ${PORT}`);
+    });
+
+    server.on("error", (err: Error) => {
+      wLogger.error("[Master]: Server error: " + err.message);
     });
   } catch (error) {
     wLogger.error("Error initializing master");
@@ -98,10 +102,6 @@ app.use((err: any, req: any, res: any, next: any) => {
     message: err.message,
     stack: err.stack,
   });
-});
-
-app.on("error", (err) => {
-  console.error("Express app error:", err);
 });
 
 process.on("uncaughtException", (err) => {
