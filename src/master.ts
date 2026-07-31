@@ -17,7 +17,7 @@ import { initContactRequestTable } from "./model/contact_request.model";
 
 const app: Application = express();
 // const MASTER_PORT = process.env.MASTER_PORT || 6101;
-const MASTER_PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 function initServer() {
   try {
@@ -37,9 +37,9 @@ function initServer() {
     }).catch((err) => {
       wLogger.error("[Master]: Database connection failed: " + err.message);
     });
-    console.log(MASTER_PORT, "port");
-    app.listen(Number(MASTER_PORT), '0.0.0.0', () => {
-      wLogger.info(`Master started on port ${MASTER_PORT}`);
+    console.log(PORT, "port");
+    app.listen(PORT, () => {
+      wLogger.info(`Master started on port ${PORT}`);
     });
   } catch (error) {
     wLogger.error("Error initializing master");
