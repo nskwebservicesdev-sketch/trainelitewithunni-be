@@ -37,7 +37,7 @@ function initServer() {
     }).catch((err) => {
       wLogger.error("[Master]: Database connection failed: " + err.message);
     });
-    console.log(PORT, "port");
+
     app.listen(PORT, () => {
       wLogger.info(`Master started on port ${PORT}`);
     });
@@ -89,6 +89,14 @@ app.get("/health", (req: Request, res: Response) => {
     uptime: process.uptime(),
     memory: process.memoryUsage(),
     version: "1.0.0",
+  });
+});
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error("Unhandled Error:", err);
+  res.status(500).json({
+    success: false,
+    message: err.message,
+    stack: err.stack,
   });
 });
 
