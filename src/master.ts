@@ -37,6 +37,7 @@ function initServer() {
     }).catch((err) => {
       wLogger.error("[Master]: Database connection failed: " + err.message);
     });
+    console.log(MASTER_PORT, "port");
     app.listen(MASTER_PORT, () => {
       wLogger.info(`Master started on port ${MASTER_PORT}`);
     });
